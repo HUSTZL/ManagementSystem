@@ -187,10 +187,9 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
             int save = this.movejobMapper.insert(movejob);
             if(save != 1)
                 return false;
+            oldJob.setAvailable(oldJob.getAvailable() + 1);
+            newJob.setAvailable(newJob.getAvailable() - 1);
         }
-
-        oldJob.setAvailable(oldJob.getAvailable() + 1);
-        newJob.setAvailable(newJob.getAvailable() - 1);
 
         int update1 = this.jobMapper.updateById(oldJob);
         if(update1 != 1)
